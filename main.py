@@ -1,14 +1,13 @@
 import turtle
 
-def shapes():    
-    
-    screen.register_shape('rectangle', ((30, 5), (-30, 5), (-30, -5), (30, -5)))
+def shapes():        
+    screen.register_shape('rectangle', ((5, 30), (-5, 30), (-5, -30), (5, -30)))
 
 
 
-def Rocket(position: tuple) -> object:
-        
+def Rocket(position: tuple) -> object:        
     rocket = turtle.Turtle()
+    rocket.left(90)
     rocket.shape('rectangle')
     rocket.color('white')
     rocket.penup()
@@ -18,7 +17,6 @@ def Rocket(position: tuple) -> object:
 
 
 def midLine():
-    
     line = turtle.Turtle()
     line.color('white')
     line.pencolor('white')
@@ -28,6 +26,21 @@ def midLine():
     line.pendown()
     line.goto((0, -500))        
 
+
+def rocket_right_up():
+    rocket_right.fd(rocket_move)
+
+
+def rocket_right_down():
+    rocket_right.bk(rocket_move)
+
+
+def rocket_left_up():
+    rocket_left.fd(rocket_move)
+
+
+def rocket_left_down():
+    rocket_left.bk(rocket_move)
 
 
 if __name__ == "__main__":
@@ -41,8 +54,20 @@ if __name__ == "__main__":
     midLine()
 
     # config rockets
+    rocket_move = 100
     rocket_right = Rocket((850, 0))
     rocket_left = Rocket((-850, 0))
 
+    # rockets move event
+    screen.onkey(rocket_right_up, "Up")
+    screen.onkey(rocket_right_down, "Down")
+    
+    screen.onkey(rocket_left_up, "w")
+    screen.onkey(rocket_left_down, "s")
+    
+        
+    screen.listen()
 
+    
+    
     turtle.mainloop()
